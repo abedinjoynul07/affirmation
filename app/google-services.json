@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "512831229769",
+    "project_id": "affirmations-33a07",
+    "storage_bucket": "affirmations-33a07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512831229769:android:e7bc80649c8cf411ac1498",
+        "android_client_info": {
+          "package_name": "com.shokal.affirmation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512831229769-qbj5nj09blcb0f4kgtkgi90q0t5pa709.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shokal.affirmation",
+            "certificate_hash": "b219812f7b0e6d88af0f10d927ab66565edd14a9"
+          }
+        },
+        {
+          "client_id": "512831229769-60hkuqbgrn5eijr1i785co74stf63amo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLqqHSiVgiypDeGmeYRv6B55OKMYLkI9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512831229769-60hkuqbgrn5eijr1i785co74stf63amo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
