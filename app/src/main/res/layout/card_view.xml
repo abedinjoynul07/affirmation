@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
@@ -21,7 +21,6 @@
             android:layout_height="141dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:src="@drawable/image1"
             android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
