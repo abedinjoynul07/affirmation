@@ -10,6 +10,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        tools:listitem="@layout/card_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:outlineAmbientShadowColor="#7C7B7B"

@@ -2,6 +2,7 @@ package com.shokal.affirmation
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -9,13 +10,16 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.shokal.affirmation.adapter.ItemAdapter
 import com.shokal.affirmation.model.User
+import com.shokal.affirmation.model.ViewUserModel
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var adapter: ItemAdapter
     private lateinit var progressBar: ProgressDialog
-    private val list = mutableListOf<User>()
+    private var list: MutableList<User> = mutableListOf<User>()
+    private lateinit var viewModel: ViewUserModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -28,22 +32,33 @@ class MainActivity : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         adapter = ItemAdapter(this, list)
         recyclerView.adapter = adapter
-        fethcData()
+        fetchData()
+
+//        viewModel = ViewModelProvider(this)[ViewUserModel::class.java]
+//
+//        viewModel.allUsers.observe(this, Observer {
+//            adapter.updateUserlist(it)
+//            if(progressBar.isShowing){
+//                progressBar.dismiss()
+//            }
+//        })
+
 
         val swipeRefresh: SwipeRefreshLayout = findViewById(R.id.swipeLayout)
         swipeRefresh.setOnRefreshListener {
-            fethcData()
+            fetchData()
             swipeRefresh.isRefreshing = false
         }
     }
 
-    fun fethcData() {
+    private fun fetchData() {
         list.clear()
         val db = FirebaseFirestore.getInstance()
         db.collection("Users")
             .orderBy("name", com.google.firebase.firestore.Query.Direction.ASCENDING).get()
             .addOnSuccessListener {
                 val documents = it.documents
+                Log.d("Data", documents[0].toString())
                 for (d: DocumentSnapshot in documents) {
                     val model: User? = d.toObject(User::class.java)
                     if (model != null) {
@@ -56,6 +71,26 @@ class MainActivity : AppCompatActivity() {
                     progressBar.dismiss()
                 }
             }
+
+
+//        val database = Firebase.database.getReference("users")
+//
+//        database.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                var data: List<User> = snapshot.children.map {
+//                    it.getValue(User::class.java)!!
+//                }
+//
+//                list.add(data)
+//                adapter.notifyDataSetChanged()
+//                if (progressBar.isShowing){
+//                    progressBar.dismiss()
+//                }
+//            }
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//        })
     }
 
 }

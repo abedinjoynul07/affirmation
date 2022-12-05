@@ -13,6 +13,9 @@ import com.shokal.affirmation.model.User
 class ItemAdapter(
     private val context: Context, private val dataset: List<User>
 ) : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
+
+//    private val arrayList = ArrayList<User>()
+
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textName: TextView = view.findViewById(R.id.cardName)
         val textEmail: TextView = view.findViewById(R.id.cardEmail)
@@ -29,13 +32,34 @@ class ItemAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = dataset[position]
-        holder.textName.text = item.name
-        holder.textEmail.text = item.email
-        holder.textBloodGroup.text = item.bloodGroup
-        holder.textId.text = item.id.toString()
+        holder.textName.text = "Name: " + item.name
+        holder.textEmail.text = "Email: " + item.email
+        holder.textBloodGroup.text = "BG: " + item.bloodGroup
+        holder.textId.text = "ID: " + item.id
         val imageId = context.resources.getIdentifier(item.image, "drawable", context.packageName)
+
         holder.image.setImageResource(imageId)
+//        val mImageRef: StorageReference = FirebaseStorage.getInstance().getReference("image/rabbi.png")
+//        val ONE_MEGABYTE = (1024 * 1024).toLong()
+//        mImageRef.getBytes(ONE_MEGABYTE)
+//            .addOnSuccessListener {
+//                val bm = BitmapFactory.decodeByteArray(it, 0, it.size)
+//                holder.image.setImageBitmap(bm)
+//
+//            }
+//        val imageUri = item.image
+//
+//        Log.d("Data", imageUri.toString())
+//
+//        Picasso.get().load(imageUri).into(holder.image)
     }
 
     override fun getItemCount() = dataset.size
+
+
+//    fun updateUserlist(userList: List<User>){
+//        this.arrayList.clear()
+//        this.arrayList.addAll(userList)
+//        notifyDataSetChanged()
+//    }
 }
