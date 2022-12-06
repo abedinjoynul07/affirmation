@@ -45,6 +45,10 @@ class ItemAdapter(
         holder.image.setOnClickListener {
             val intent = Intent(context, Detail_View::class.java)
             intent.putExtra("name", item.name)
+            intent.putExtra("image", item.image)
+            intent.putExtra("dob", item.dateOfBirth)
+            intent.putExtra("email", item.email)
+            intent.putExtra("mobile", item.mobile)
 
             context.startActivity(intent)
         }
