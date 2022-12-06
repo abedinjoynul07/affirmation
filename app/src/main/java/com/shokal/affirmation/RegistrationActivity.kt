@@ -28,6 +28,7 @@ class RegistrationActivity : AppCompatActivity() {
             val dob = regBinding.dateOfBirth.text.toString().trim()
             val mobile = regBinding.registrationMobileNumber.text.toString().trim()
             val name = regBinding.registrationName.text.toString().trim()
+
             Log.d("Registration", email.toString())
             regFirebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
