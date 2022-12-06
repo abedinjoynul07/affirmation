@@ -1,5 +1,6 @@
 package com.shokal.affirmation
 
+import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,16 +17,21 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        progressBar = ProgressDialog(this)
+        progressBar.setCancelable(false)
+        progressBar.setMessage("Loading..")
         firebaseAuth = FirebaseAuth.getInstance()
 
 
 
         binding.loginButton.setOnClickListener {
+            progressBar.show()
             var email = binding.loginEmail.text.toString().trim()
             var password = binding.loginPassword.text.toString().trim()
             Log.d("Registration", email)
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
+                    progressBar.dismiss()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("email", email)
                     startActivity(intent)

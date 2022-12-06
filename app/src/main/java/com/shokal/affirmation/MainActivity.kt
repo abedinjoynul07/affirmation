@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         list.clear()
         val db = FirebaseFirestore.getInstance()
         db.collection("Users")
-            .orderBy("name", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .orderBy("name", com.google.firebase.firestore.Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener {
                 val documents = it.documents
