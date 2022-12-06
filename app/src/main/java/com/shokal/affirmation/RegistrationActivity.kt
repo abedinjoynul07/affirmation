@@ -42,7 +42,6 @@ class RegistrationActivity : AppCompatActivity() {
                     Toast.makeText(this, "Registration Failed.", Toast.LENGTH_SHORT)
                 }
         }
-
         regBinding.loginIntentButton.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
