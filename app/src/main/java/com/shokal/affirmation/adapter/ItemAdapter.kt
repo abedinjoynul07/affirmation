@@ -1,12 +1,14 @@
 package com.shokal.affirmation.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.shokal.affirmation.Detail_View
 import com.shokal.affirmation.R
 import com.shokal.affirmation.model.User
 
@@ -34,11 +36,22 @@ class ItemAdapter(
         val item = dataset[position]
         holder.textName.text = "Name: " + item.name
         holder.textEmail.text = "Email: " + item.email
-        holder.textBloodGroup.text = "BG: " + item.bloodGroup
+        holder.textBloodGroup.text = "BG: " + item.mobile
         holder.textId.text = "ID: " + item.id
         val imageId = context.resources.getIdentifier(item.image, "drawable", context.packageName)
 
         holder.image.setImageResource(imageId)
+
+        holder.image.setOnClickListener {
+            val intent = Intent(context, Detail_View::class.java)
+            intent.putExtra("name", item.name)
+            intent.putExtra("image", item.image)
+            intent.putExtra("dob", item.dateOfBirth)
+            intent.putExtra("email", item.email)
+            intent.putExtra("mobile", item.mobile)
+
+            context.startActivity(intent)
+        }
 //        val mImageRef: StorageReference = FirebaseStorage.getInstance().getReference("image/rabbi.png")
 //        val ONE_MEGABYTE = (1024 * 1024).toLong()
 //        mImageRef.getBytes(ONE_MEGABYTE)
