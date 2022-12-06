@@ -55,12 +55,13 @@ class MainActivity : AppCompatActivity() {
         list.clear()
         val db = FirebaseFirestore.getInstance()
         db.collection("Users")
-            .orderBy("name", com.google.firebase.firestore.Query.Direction.ASCENDING).get()
+            .orderBy("name", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .get()
             .addOnSuccessListener {
                 val documents = it.documents
-                Log.d("Data", documents[0].toString())
-                for (d: DocumentSnapshot in documents) {
-                    val model: User? = d.toObject(User::class.java)
+                Log.d("Data", documents.toString())
+                for (data: DocumentSnapshot in documents) {
+                    val model: User? = data.toObject(User::class.java)
                     if (model != null) {
                         list.add(model)
                     }
@@ -71,7 +72,6 @@ class MainActivity : AppCompatActivity() {
                     progressBar.dismiss()
                 }
             }
-
 
 //        val database = Firebase.database.getReference("users")
 //
