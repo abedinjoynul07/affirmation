@@ -36,7 +36,7 @@ class ItemAdapter(
         val item = dataset[position]
         holder.textName.text = "Name: " + item.name
         holder.textEmail.text = "Email: " + item.email
-        holder.textBloodGroup.text = "BG: " + item.bloodGroup
+        holder.textBloodGroup.text = "BG: " + item.mobile
         holder.textId.text = "ID: " + item.id
         val imageId = context.resources.getIdentifier(item.image, "drawable", context.packageName)
 

@@ -3,6 +3,7 @@ package com.shokal.affirmation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.shokal.affirmation.databinding.ActivityLoginBinding
@@ -16,11 +17,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
-        var email = binding.loginEmail.toString().trim()
-        var password = binding.loginPassword.toString().trim()
+
 
 
         binding.loginButton.setOnClickListener {
+            var email = binding.loginEmail.text.toString().trim()
+            var password = binding.loginPassword.text.toString().trim()
+            Log.d("Registration", email)
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     val intent = Intent(this, MainActivity::class.java)
