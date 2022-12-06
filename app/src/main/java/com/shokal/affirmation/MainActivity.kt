@@ -34,15 +34,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         fetchData()
 
-//        viewModel = ViewModelProvider(this)[ViewUserModel::class.java]
-//
-//        viewModel.allUsers.observe(this, Observer {
-//            adapter.updateUserlist(it)
-//            if(progressBar.isShowing){
-//                progressBar.dismiss()
-//            }
-//        })
-
 
         val swipeRefresh: SwipeRefreshLayout = findViewById(R.id.swipeLayout)
         swipeRefresh.setOnRefreshListener {
@@ -55,8 +46,7 @@ class MainActivity : AppCompatActivity() {
         list.clear()
         val db = FirebaseFirestore.getInstance()
         db.collection("Users")
-            .orderBy("name", com.google.firebase.firestore.Query.Direction.ASCENDING)
-            .get()
+            .orderBy("name", com.google.firebase.firestore.Query.Direction.ASCENDING).get()
             .addOnSuccessListener {
                 val documents = it.documents
                 Log.d("Data", documents.toString())
@@ -72,25 +62,6 @@ class MainActivity : AppCompatActivity() {
                     progressBar.dismiss()
                 }
             }
-
-//        val database = Firebase.database.getReference("users")
-//
-//        database.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                var data: List<User> = snapshot.children.map {
-//                    it.getValue(User::class.java)!!
-//                }
-//
-//                list.add(data)
-//                adapter.notifyDataSetChanged()
-//                if (progressBar.isShowing){
-//                    progressBar.dismiss()
-//                }
-//            }
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//        })
     }
 
 }
