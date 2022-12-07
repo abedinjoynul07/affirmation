@@ -17,21 +17,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var email = binding.loginEmail.text.toString().trim()
-        var password = binding.loginPassword.text.toString().trim()
-
         progressBar = ProgressDialog(this)
         progressBar.setCancelable(false)
         progressBar.setMessage("Loading..")
         firebaseAuth = FirebaseAuth.getInstance()
 
         binding.loginButton.setOnClickListener {
-            if (email == "" || email == null || password == "" || password == null){
-                binding.loginEmail.error
-                binding.loginPassword.error
-                Toast.makeText(this, "Email and Password is required", Toast.LENGTH_SHORT)
-            }
             progressBar.show()
+            var email = binding.loginEmail.text.toString().trim()
+            var password = binding.loginPassword.text.toString().trim()
             Log.d("Registration", email)
             firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
                     progressBar.dismiss()
