@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     progressBar.dismiss()
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     intent.putExtra("email", email)
                     startActivity(intent)
                 }
