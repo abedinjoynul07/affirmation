@@ -9,21 +9,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/material_dynamic_neutral_variant99">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/material_dynamic_neutral_variant10">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="profile"
-                android:textColor="@color/material_dynamic_neutral_variant99"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_margin="5dp"/>
@@ -41,10 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="User List"
-                android:textColor="@color/material_dynamic_neutral_variant99"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:backgroundTint="@color/material_dynamic_neutral20"/>
+                android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
 
 
