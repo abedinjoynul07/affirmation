@@ -22,7 +22,6 @@ class HomeActivity : AppCompatActivity() {
 
         val email= intent.getStringExtra("email")
 
-
         binding.userList.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("email", email)
@@ -37,7 +36,11 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, ViewProfile::class.java)
             startActivity(intent)
         }
+    }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        LoginActivity().authUser()
     }
 
     fun logout(){
