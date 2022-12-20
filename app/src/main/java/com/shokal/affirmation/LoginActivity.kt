@@ -17,13 +17,13 @@ import com.shokal.affirmation.model.User
 
 lateinit var binding: ActivityLoginBinding
 lateinit var firebaseAuth: FirebaseAuth
-
+lateinit var sharedPreferences : SharedPreferences
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val sharedPreferences = getSharedPreferences("preferences", MODE_PRIVATE)
+        sharedPreferences = getSharedPreferences("preferences", MODE_PRIVATE)
         progressBar = ProgressDialog(this)
         progressBar.setCancelable(false)
         progressBar.setMessage("Loading..")
@@ -32,11 +32,16 @@ class LoginActivity : AppCompatActivity() {
         val email = sharedPreferences.getString("email", null)
         val password = sharedPreferences.getString("password", null)
         Log.d("Login", email.toString())
-        if (email != null && password != null) {
-            val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("email", email)
-            startActivity(intent)
+        if(FirebaseAuth.getInstance().isSignInWithEmailLink(email.toString())){
+            startActivity(Intent(this, HomeActivity::class.java))
+        }else{
+            if (email != null && password != null) {
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("email", email)
+                startActivity(intent)
+            }
         }
+        authUser()
         binding.loginButton.setOnClickListener {
                 progressBar.show()
                 var email = binding.loginEmail.text.toString().trim()
@@ -61,6 +66,21 @@ class LoginActivity : AppCompatActivity() {
         binding.registrationIntentButton.setOnClickListener {
             val intent = Intent(this, RegistrationActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    fun authUser(){
+        val email = sharedPreferences.getString("email", null)
+        val password = sharedPreferences.getString("password", null)
+        Log.d("Login", email.toString())
+        if(FirebaseAuth.getInstance().isSignInWithEmailLink(email.toString())){
+            startActivity(Intent(this, HomeActivity::class.java))
+        }else{
+            if (email != null && password != null) {
+                val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("email", email)
+                startActivity(intent)
+            }
         }
     }
 }
