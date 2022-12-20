@@ -16,9 +16,8 @@ import com.shokal.affirmation.databinding.ActivityHomeBinding
 class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding: ActivityHomeBinding
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        val binding: ActivityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val email= intent.getStringExtra("email")

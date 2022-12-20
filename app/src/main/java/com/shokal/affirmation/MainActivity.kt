@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.shokal.affirmation.`interface`.ApiInterface
@@ -41,13 +42,12 @@ class MainActivity : AppCompatActivity() {
         progressBar.setMessage("Fetching Data...")
         progressBar.show()
 
+
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.setHasFixedSize(true)
+        chooseLayout()
         adapter = ItemAdapter(this, list)
         recyclerView.adapter = adapter
-
-
-        chooseLayout()
         fetchData()
 
         val swipeRefresh: SwipeRefreshLayout = findViewById(R.id.swipeLayout)
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         if (isLinearLayoutManager) {
             recyclerView.layoutManager = LinearLayoutManager(this)
         } else {
-            recyclerView.layoutManager = GridLayoutManager(this, 2)
+            recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         }
         recyclerView.adapter = ItemAdapter(this, list)
     }
