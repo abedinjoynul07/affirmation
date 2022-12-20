@@ -15,21 +15,25 @@ lateinit var regBinding: ActivityRegistrationBinding
 lateinit var regFirebaseAuth: FirebaseAuth
 lateinit var database: FirebaseFirestore
 
+@Suppress("DEPRECATION")
 class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         regBinding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(regBinding.root)
-
         progressBar = ProgressDialog(this)
         progressBar.setCancelable(false)
         progressBar.setMessage("Loading..")
-
         regFirebaseAuth = FirebaseAuth.getInstance()
         database = FirebaseFirestore.getInstance()
 
+        regBinding.uploadImage.setOnClickListener{
+            val intent = Intent()
+            intent.type = "images/"
+            intent.action = Intent.ACTION_GET_CONTENT
+            startActivityForResult(intent, 100)
+        }
         regBinding.registrationSubmitButton.setOnClickListener {
-
             progressBar.show()
             val email = regBinding.registrationEmail.text.toString().trim()
             val password = regBinding.registrationPassword.text.toString().trim()
